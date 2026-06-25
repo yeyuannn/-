@@ -1,0 +1,40 @@
+2026-04-21 13:27:22.224 [restartedMain] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The dependencies of some of the beans in the application context form a cycle:
+
+   sysAttractionsController
+      ↓
+   sysAttractionsServiceImpl
+      ↓
+   sysCommentsMapper defined in file [E:\exam\旅游系统新\tourism-backend\target\classes\com\shanzhu\tourism\mapper\SysCommentsMapper.class]
+┌─────┐
+|  sqlSessionFactory defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]
+↑     ↓
+|  myMetaObjectHandler (field private com.shanzhu.tourism.service.UserService com.shanzhu.tourism.handle.MyMetaObjectHandler.userService)
+↑     ↓
+|  userServiceImpl (field protected com.baomidou.mybatisplus.core.mapper.BaseMapper com.baomidou.mybatisplus.extension.service.impl.ServiceImpl.baseMapper)
+↑     ↓
+|  userMapper defined in file [E:\exam\旅游系统新\tourism-backend\target\classes\com\shanzhu\tourism\mapper\UserMapper.class]
+└─────┘
+
+
+2026-06-11 13:37:17.152 [restartedMain] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+

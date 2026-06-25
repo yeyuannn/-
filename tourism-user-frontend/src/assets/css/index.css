@@ -1,0 +1,134 @@
+.index {
+    width: 100%;
+    height: 100%;
+    font-family: '黑体';
+}
+.search-section {
+    position: relative;
+    width: 100%;
+}
+.search-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+    width: 600px;
+}
+.search-title {
+    font-size: 36px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 4px;
+}
+.search-input {
+    width: 450px;
+    margin-right: 10px;
+}
+.search-input >>> .el-input__inner {
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    border-radius: 25px 0 0 25px;
+    border: none;
+    padding-left: 20px;
+}
+.search-btn {
+    height: 50px;
+    border-radius: 0 25px 25px 0;
+    padding: 0 30px;
+    font-size: 16px;
+}
+.search-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    cursor: pointer;
+}
+.search-item i {
+    margin-right: 10px;
+    color: #409EFF;
+}
+.search-item span {
+    color: #606266;
+}
+.index1 {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    background-image: url('../image/组件\ 1.png');
+    background-size: 100%;
+}
+.index2 {
+    width: 80%;
+    height: 100%;
+    margin-top: 20px;
+}
+.index3 {
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.index4 {
+    width: 100%;
+    height: 380px;
+    display: flex;
+    justify-content: space-between;
+}
+.index5 {
+    height: 100%;
+    width: 32%;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: #ffffff;
+}
+.index7 {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #5FA36A;
+}
+.index8 {
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #55769C;
+    height: 70px;
+    overflow: hidden;
+}
+.index9 {
+    margin-left: 15px;
+    width: 70px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #E71717;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.index10 {
+    width: 100%;
+    height: 550px;
+    background-image: url('../image/组件\ 1\ \(1\).png');
+    background-size: 100% 100%;
+}
+.index11 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}

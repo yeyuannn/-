@@ -1,0 +1,125 @@
+# 旅游研学系统前端开发文档
+
+---
+
+## 一、项目概述
+
+**技术栈：** Vue 2.6.14 + Vue-Router 3.5.1 + Vuex 3.6.2 + Element-UI 2.15.14 + Axios 1.6.2
+
+**目录结构：**
+```
+src/
+├── api/api.js          # API接口
+├── assets/            # 静态资源(css/image)
+├── components/        # header/bottom公共组件
+├── minix/index.js     # 混入复用方法
+├── router/index.js    # 路由配置
+├── store/index.js     # 状态管理
+├── utils/             # request请求封装/token工具
+├── views/             # 页面组件
+└── permission.js      # 路由权限控制
+```
+
+---
+
+## 二、代码规范
+
+### 2.1 代码注释
+- 原则：简洁准确，及时更新，不过度注释
+- 复杂业务逻辑添加行内注释
+- 特殊标记：`TODO:` `FIXME:`
+
+### 2.2 命名规范
+
+| 类型 | 规范 | 示例 |
+|------|------|------|
+| 变量 | 小驼峰，语义化 | `searchKeyword`, `allAttractions` |
+| 布尔值 | is/has/should开头 | `isLoading` |
+| 函数 | 动词+名词 | `getXXX()`, `saveXXX()`, `handleXXX()`, `toXXX()` |
+| 组件 | 小驼峰注册 | `headers`, `bottoms` |
+| CSS | 数字序列 | `index1`, `index2`, `index3` |
+
+### 2.3 格式规范
+- **缩进：2空格**，不使用Tab
+- 方法之间空一行
+- CSS统一放在`assets/css/`目录，通过@import引入
+
+---
+
+## 三、错误处理 & 防错机制
+
+### 3.1 统一错误处理
+
+| 状态码 | 处理方式 |
+|--------|----------|
+| 1011 | 登录过期，清除token刷新页面 |
+| 1009 | 账号锁定，清除token刷新页面 |
+| 其他 | 弹窗提示"系统内部错误" |
+
+### 3.2 防错机制
+
+1. **路由权限防护** - permission.js
+   - 白名单：`['/login', '/register','/forget']`
+   - 无token自动跳转登录页
+
+2. **HTTP请求防护**
+   - POST自动加时间戳，GET自动加随机数防缓存
+   - 统一加请求头`x_access_token`
+
+3. **其他防护**
+   - 文件上传：图片<2MB校验
+   - 用户输入：trim去空格，大小写不敏感搜索
+   - 登出清除localStorage
+
+---
+
+## 四、技术说明
+
+### 4.1 第三方库
+
+| 库名 | 用途 |
+|------|------|
+| **NProgress 0.2.0** | 页面跳转顶部进度条 |
+| **Vue-Quill-Editor 3.0.6** | 富文本编辑 |
+| **ECharts 5.5.0** | 数据可视化图表 |
+
+### 4.2 核心设计模式
+
+1. **Axios拦截器** - request.js
+   - 请求拦截：统一加参数和token
+   - 响应拦截：统一错误处理
+
+2. **Vue Mixin混入** - minix/index.js
+   - 封装上传地址、文件校验等通用方法
+
+---
+
+## 五、功能实现说明
+
+### 5.1 核心业务逻辑
+
+| 模块 | 说明 |
+|------|------|
+| **用户认证** | token存储localStorage，permission.js权限控制 |
+| **搜索功能** | 实时搜索建议，精确搜索（1跳详情/多跳列表） |
+| **分页查询** | 统一结构：{pageSize:12, pageNumber:1} |
+| **收藏/预订** | 增删查全套接口 |
+
+### 5.2 UI界面实现
+
+1. **通用布局**：Header(80px) + Main + Bottom
+2. **首页模块**：轮播图、搜索框、景点推荐、路线展示
+3. **列表页**：搜索栏 + 卡片列表 + 分页
+4. **详情页**：图片 + 信息 + 介绍 + 操作按钮
+
+**Element-UI核心组件：** `el-carousel`, `el-autocomplete`, `el-pagination`, `el-message`
+
+---
+
+## 六、维护建议
+
+- API接口统一在`api/api.js`定义
+- 新增页面参照现有代码风格
+- 通用方法抽取到`minix/index.js`
+
+**优化方向：** async/await语法、路由懒加载、打包优化

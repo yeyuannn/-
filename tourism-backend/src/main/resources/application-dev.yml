@@ -1,0 +1,84 @@
+# 数据源配置
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    druid:
+      url: jdbc:mysql://localhost:3306/db_tourism?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+      username: root
+      password: 123456
+      # 初始连接数
+      initialSize: 5
+      # 最小连接池数量
+      minIdle: 10
+      # 最大连接池数量
+      maxActive: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置连接超时时间
+      connectTimeout: 30000
+      # 配置网络超时时间
+      socketTimeout: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      # 配置一个连接在池中最大生存的时间，单位是毫秒
+      maxEvictableIdleTimeMillis: 900000
+      # 配置检测连接是否有效
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      webStatFilter:
+        enabled: true
+      statViewServlet:
+        enabled: true
+        # 设置白名单，不填则允许所有访问
+        allow:
+        url-pattern: /druid/*
+        # 控制台管理用户名和密码
+        login-username: travel
+        login-password: 123456
+      filter:
+        stat:
+          enabled: true
+          # 慢SQL记录
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+  # redis 配置
+  redis:
+    # 地址
+    host: 127.0.0.1
+    # 端口，默认为6379
+    port: 6379
+    # 数据库索引
+    database: 0
+    # 密码
+    password:
+    # 连接超时时间
+    timeout: 10s
+    lettuce:
+      pool:
+        # 连接池中的最小空闲连接
+        min-idle: 0
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池的最大数据库连接数
+        max-active: 8
+        # #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+
+#是否开启推荐算法
+useRecommend: true
+
+#沙箱配置
+alipay:
+  appId: 9021000142679769
+  appPrivateKey: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCe6w1SD/dyqZTzc1G8bSUz0xsn4KOMxHG0GYIX9HOIeIsYjWnAM8/dzL+MSExVNAhgbwdkX1EBSNa/EaIaGiib/xDfg/yiDbTxrg8MtqQ/q46nHqOgG2i3vghzg8MUiz2PS6nTUw/6nsdPKhQGGCzJwVOcNTGP1Vtve/SEdH92gdz1hB754HH8x5SiURi0DOYcDAFHP20JjFdZRjxKA5DzhI8+a4rqJgqhfsE6rrOMU5nzbl3LnNx2zFc9aBmb0QCG+cmDJuzvVMU1xQunPwJaDHtJ31dYenbVxuEELFUuOV0kOCK7ZiTwN6CEevStDXYzq/PAI2XYURgGiFpk6MxLAgMBAAECggEBAIo6sCp6IuWEpkAgRa9dTKfIb21/UyNFWBWsvmDxy3CgUXT4xExfhOZLiy2NUYAnM0YWLVrcIcy5O7mUr+h+amZONbIFz0ByJbq2iPapAzMymXG6D99bF/oC/LzlllEPUGuNB9n9/P8lDv5H/oTSkFqpo31TM5oFnnPZYPW5k4lSxtF0YufXQZ2Gswyslmprt+ev8zB1lvGYgzrIRbCw/9US2iFUztl3kpEAd5LpAul2vR0WcWZNhnTbnWgPiwuvhmAr7cNA8eajmKpA95JnBvQIDC8z5yxoSiDU1M+yAGJ4JT1KQJvBFjyeAACdqS/V/E3RqzoeVxzuO5iiMDNJANkCgYEA7AXURVJZAzcNpfqD7FN+qZuYtH4nLYNPlLEjPIPZwr6Bm5SDwOJtFPqLiLFITI0XrfOJ4FvZuz+0WI0XMTvuE3E4rC6jqVZCx698iM1qNtg0AV+e9ZsItPfkvEV+UcIOcWWGFKVNVwVbHamRW9Vd5n5/2AlrS5Ec8k5k2iSjYY8CgYEArF6Cw95Ma8zn3cy45HA++L4C6tj6064+f8YB6uIEUEwXYlpa5b3rEXKlKuV37SZJtev21lxYHT+CXRQbarqd3srBjOwLNbtrHllF9OYB93aWSzkEDgLyaazZH4BtuzCZTpBSKsz5WJrNXYLV1EtgvNP3UFV0QQvZ7blDKX/ek4UCgYAgir01waDcPJ75H41I7EougHGRkUM9lzlFuxaspVFE9JdSKCvyUEXR+ql6c1cQlvOI3GdKM9/VXXc0Ll/gPe8ZZyb1NokCNA6JEb0N76SRY0XoWpLEMlgE+5jiDILaKvNq1yChgBklwmtJr7OHAegse4yM8N+GT7+5+O0W1q5gKQKBgGpyEx8ScO9Bow7+FlA8YScLcJHHXV7MBBy0EwsSeMd9thMu6WNnXXtw6T8MZns1Yd/O0KigbmnhhogkmqnWhRfI7q4wNtv/2a7sQp9yS1SfD0F0/GQKvdk0vQEPNrSa1pIF3jhATNvC/X/6BEMOKbdyzw/1Nc3Vm8eK2UcPiExhAoGAe5wuhQjIOZqE0zxI+cWNcKyGHm37jeDyymXP2uYQmvbZUa0l+SsD22LawJej/sOoWt6B8DiHT4e0Fnm04836VY1m4jJDUJ7UtmXp/mlMtEREaLr3H52iKSbWQX1LsV8tcNgPASJZCdVIhU0QHsVlLX0UhRG0hc+7elwoqTkpgLg=
+  alipayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnusNUg/3cqmU83NRvG0lM9MbJ+CjjMRxtBmCF/RziHiLGI1pwDPP3cy/jEhMVTQIYG8HZF9RAUjWvxGiGhoom/8Q34P8og208a4PDLakP6uOpx6joBtot74Ic4PDFIs9j0up01MP+p7HTyoUBhgsycFTnDUxj9Vbb3v0hHR/doHc9YQe+eBx/MeUolEYtAzmHAwBRz9tCYxXWUY8SgOQ84SPPmuK6iYKoX7BOq6zjFOZ825dy5zcdsxXPWgZm9EAhvnJgybs71TFNcULpz8CWgx7Sd9XWHp21cbhBCxVLjldJDgiu2Yk8DeghHr0rQ12M6vzwCNl2FEYBohaZOjMSwIDAQAB
+  notifyUrl: http://vukew8.natappfree.cc/alipay/notify
